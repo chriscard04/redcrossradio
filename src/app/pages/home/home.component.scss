@@ -1,0 +1,28 @@
+.list-class .mat-list-item {
+  height: auto;
+  //  margin-bottom: 10px;
+  // padding-bottom: 10px;
+}
+
+.is-active {
+  background-color: lightcoral !important;
+  font-size: medium !important;
+  font-weight: bold !important;
+}
+
+
+.example-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 200px;
+}
+
+.example-container {
+  position: static;
+  top: 60px;
+  bottom: 100px;
+  left: 0;
+  right: 0;
+}
