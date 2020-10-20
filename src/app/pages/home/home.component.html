@@ -1,13 +1,9 @@
-<div style="padding: 15px; margin-bottom: 200px;">
+<div class="overlayed">
   <div fxLayout="column">
     <div class="flex-p">
       <div fxLayout="column" class="mat-elevation-z8" style="padding: 15px;">
-
-
-        <h1>Home</h1>
-        <h3>{{hour}}</h3>
-
-        <br>
+        <h1>Programación Regular</h1>
+        <h3>Hora Local: {{hour}}</h3>
 
         <!-- <div *ngFor="let item of schedule">
   <span>{{ item.gsx$hour.$t }}</span>
@@ -51,17 +47,17 @@
             [id]="'item-'+i">
 
             <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="start center"
-              fxLayoutAlign.xs="start start">
+              fxLayoutAlign.xs="start start" style="margin: 10px;">
               <div fxFlex.md="10" fxFlex.lg="10" fxFlex.lt-sm="100">
                 <span fxLayoutAlign="start center">
                   <mat-icon matListIcon>schedule</mat-icon>
                   {{item.hour}}
                 </span>
               </div>
-              <div fxFlex.md="45" fxFlex.lg="45" fxFlex.lt-sm="100">
+              <div fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxFlex.lt-sm="100">
                 {{item.program}}
               </div>
-              <div fxFlex.md="45" fxFlex.lg="45" fxFlex.lt-sm="100">
+              <div fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxFlex.lt-sm="100">
                 {{item.title}}
               </div>
             </div>
@@ -73,9 +69,3 @@
     </div>
   </div>
 </div>
-
-
-<mat-toolbar class="example-footer">
-  <iframe src="//www.zeno.fm/player/radio-cruz-roja" autoplay width="100%" height="200" frameborder="0" scrolling="yes" >
-  </iframe>
-</mat-toolbar>

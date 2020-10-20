@@ -26,10 +26,12 @@ export class PagesComponent implements OnInit {
   public scrolledContent: any;
   public ClientName: string;
   public UserName: string;
+  public radio: any;
 
   constructor(
     private _appSettings: AppSettings,
     private _router: Router,
+
     // private _menuService: MenuService,
     // private _service: AppService
   ) {
@@ -51,6 +53,7 @@ export class PagesComponent implements OnInit {
           this.ClientName = data.ClientName;
           this.UserName = data.UserName;
         }); */
+
   }
 
   ngAfterViewInit() {

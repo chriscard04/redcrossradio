@@ -1,20 +1,18 @@
-<div style="height: 89vh;">
+<div style="height: calc(100vh - 200px);">
   <mat-toolbar color="primary">
     <mat-toolbar-row>
       <button mat-icon-button (click)="sidenav.toggle()" fxShow="true" fxHide.gt-sm>
         <mat-icon>menu</mat-icon>
       </button>
-      <span>Responsive Navigation</span>
+      <img mat-icon-button src="../../favicon.ico" style="height: 5.7vh; margin-right: 10px;">
+      <span style="font-size: larger;  ">Cruz Roja Radio</span>
       <span class="radio-spacer"></span>
       <div fxShow="true" fxHide.lt-md>
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
-        <a href="/home" mat-button>Home</a>
-        <a [routerLink]="'/about/vision'" mat-button>Vision</a>
-        <a href="#" mat-button>Menu Item 3</a>
-        <a href="#" mat-button>Menu Item 4</a>
-        <a href="#" mat-button>Menu Item 5</a>
-        <a href="#" mat-button>Menu Item 6</a>
+        <a [routerLink]="['/home']" rel="no-refresh" mat-button>Inicio</a>
+        <a [routerLink]="['/about/vision']" rel="no-refresh" mat-button>Vision</a>
       </div>
+      <span class="radio-spacer"></span>
       <span class="radio-spacer"></span>
       <button mat-icon-button class="radio-icon favorite-icon" aria-label="radio icon-button with heart icon">
         <mat-icon>favorite</mat-icon>
@@ -29,12 +27,7 @@
     <mat-sidenav #sidenav>
       <mat-nav-list>
         <a (click)="sidenav.toggle()" mat-list-item>Close</a>
-        <a href="/home" mat-list-item>Home</a>
-        <a href="#" mat-list-item>Menu Item 2</a>
-        <a href="#" mat-list-item>Menu Item 3</a>
-        <a href="#" mat-list-item>Menu Item 4</a>
-        <a href="#" mat-list-item>Menu Item 5</a>
-        <a href="#" mat-list-item>Menu Item 6</a>
+        <a [routerLink]="['home']" rel="no-refresh" mat-list-item>Home</a>
       </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>

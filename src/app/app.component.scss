@@ -1,4 +1,12 @@
+.example-footer {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  height: 200px;
+}
+
 .app {
+  overflow: hidden;
   position: absolute;
   top: 0;
   left: 0;

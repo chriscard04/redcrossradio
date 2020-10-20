@@ -4,6 +4,7 @@ import * as momenttz from 'moment-timezone';
 import * as moment from 'moment';
 import { MatListItem } from '@angular/material/list';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -11,6 +12,7 @@ import { MatListItem } from '@angular/material/list';
 })
 export class HomeComponent implements AfterViewInit {
   @ViewChild("scheduleItem") itemProp: QueryList<ElementRef>;
+
   tempData;
   dataSchedule: scheduleModel[] = new Array();
   now: Date = new Date();
@@ -18,7 +20,8 @@ export class HomeComponent implements AfterViewInit {
   schedule;
   hour;
 
-  constructor(private _homeService: HomeService, public elRef: ElementRef) { }
+  constructor(private _homeService: HomeService, public elRef: ElementRef) {
+  }
 
   ngOnInit() {
     this._homeService.getSchedule().subscribe(
@@ -51,10 +54,6 @@ export class HomeComponent implements AfterViewInit {
     );
 
     this.hour = moment(this.now).format("HH:mm");
-
-
-
-
   }
 
   ngAfterViewInit() {
