@@ -59,7 +59,7 @@ export class PagesComponent implements OnInit {
   ngAfterViewInit() {
     setTimeout(() => {
       this.settings.loadingSpinner = false;
-    }, 300);
+    }, 1500);
 
     this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

@@ -1,71 +1,28 @@
-<div class="overlayed">
-  <div fxLayout="column">
-    <div class="flex-p">
-      <div fxLayout="column" class="mat-elevation-z8" style="padding: 15px;">
-        <h1>Programación Regular</h1>
-        <h3>Hora Local: {{hour}}</h3>
+<div class="landing-image">
+  <div class="main-content">
+    <div class="header">
+      <h1 class="main-intro" style="font-size: xx-large;">Tu Radio, Tu Espacio</h1>
 
-        <!-- <div *ngFor="let item of schedule">
-  <span>{{ item.gsx$hour.$t }}</span>
-  <span>{{ item.gsx$program.$t }}</span>
-</div> -->
+      <br>
 
-        <!-- <mat-list>
-  <mat-list-item *ngFor="let item of schedule">
-    <mat-icon matListIcon>schedule</mat-icon>
-    <div fxLayout="row" fxLayoutAlign="space-around center" matLine>
-      <span fxLayout="col" style="width: 10%;"> {{item.gsx$hour.$t}} </span>
-      <span fxLayout="col" style="width: 40%;"> {{item.gsx$program.$t}} </span>
-      <span fxLayout="col" style="width: 40%;"> {{item.gsx$title.$t}} </span>
+      <p class="main-intro" style="font-size: large;">
+        ¿Nos has sintonizado recientemente?
+      </p>
+      <p class="sec-intro" style="font-size: large;">
+        <b>
+          ~ !Nos estamos renovando!
+        </b>
+      </p>
+
+      <br>
+      <hr>
+      <br>
+
+      <p class="sec-intro center" style="color: crimson !important; font-weight: bold; font-size: x-large;">
+        ¡Sintonízanos!
+      </p>
     </div>
-  </mat-list-item>
-</mat-list>
- -->
 
-
-        <!-- <div *ngFor="let card of schedule" fxFlex="25" fxFlex.md="33" fxFlex.sm="50" fxFlex.xs="100" fxLayout="row"
-  style="padding: 5px;">
-  <mat-card>
-    <mat-icon mat-card-imag>schedule</mat-icon>
-    <mat-card-title> {{ card.gsx$hour.$t }} </mat-card-title>
-    <mat-card-content>
-      <span> {{card.gsx$program.$t}} </span>
-      <span> {{card.gsx$title.$t}} </span>
-    </mat-card-content>
-  </mat-card>
-</div> -->
-
-
-        <!--    <br><br>
-    <a href="https://www.zeno.fm/player/radio-cruz-roja" target="_blank"
-      style="display: block; font-size: 0.9em; line-height: 10px;;">¿Hubo un error? Abrir Radio Cruz Roja en otra
-      ventana</a> -->
-
-
-        <mat-list class="list-class">
-          <mat-list-item #scheduleItem *ngFor="let item of schedule; let i = index" [class.is-active]="i==selectedIndex"
-            [id]="'item-'+i">
-
-            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="start center"
-              fxLayoutAlign.xs="start start" style="margin: 10px;">
-              <div fxFlex.md="10" fxFlex.lg="10" fxFlex.lt-sm="100">
-                <span fxLayoutAlign="start center">
-                  <mat-icon matListIcon>schedule</mat-icon>
-                  {{item.hour}}
-                </span>
-              </div>
-              <div fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxFlex.lt-sm="100">
-                {{item.program}}
-              </div>
-              <div fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxFlex.lt-sm="100">
-                {{item.title}}
-              </div>
-            </div>
-            <mat-divider [inset]="true"></mat-divider>
-          </mat-list-item>
-        </mat-list>
-
-      </div>
-    </div>
   </div>
+
 </div>

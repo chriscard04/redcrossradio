@@ -8,7 +8,7 @@ import { NotFoundComponent } from '../app/pages/others/errors/not-found/not-foun
 import { BlankComponent } from '../app/pages/others/blank/blank.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'blank', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'blank',
     data: { breadcrumb: '' },
@@ -42,6 +42,42 @@ export const routes: Routes = [
       {
         path: '',
         loadChildren: () => import('src/app/pages/home/home.module').then(m => m.HomeModule)
+      },
+    ],
+  },
+  {
+    path: 'daily',
+    data: { breadcrumb: 'Daily' },
+    component: PagesComponent,
+    // canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/daily/daily.module').then(m => m.DailyModule)
+      },
+    ],
+  },
+  {
+    path: 'programs',
+    data: { breadcrumb: 'Programs' },
+    component: PagesComponent,
+    // canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/programs/programs.module').then(m => m.ProgramsModule)
+      },
+    ],
+  },
+  {
+    path: 'downloads',
+    data: { breadcrumb: 'Downloads' },
+    component: PagesComponent,
+    // canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('src/app/pages/downloads/downloads.module').then(m => m.DownloadsModule)
       },
     ],
   },

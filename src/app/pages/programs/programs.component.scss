@@ -1,0 +1,60 @@
+mat-list {
+  flex-grow: 1;
+  overflow: auto;
+  height: calc(100vh - 58vh);
+}
+
+.list-class .mat-list-item {
+  height: auto;
+}
+
+.overlayed {
+  padding: 15px;
+}
+
+.is-active {
+  background-color: lightcoral !important;
+  font-size: medium !important;
+  font-weight: bold !important;
+}
+
+.example-container {
+  position: absolute;
+  top: 60px;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+}
+
+///////////////////////////////////////////////////////////////////////
+
+audio {
+  width: 100%;
+  height: 100px;
+}
+
+audio::-webkit-media-controls-panel {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* We use flex-start here to ensure that the play button is visible even
+   * if we are too small to show all controls.
+   */
+  justify-content: flex-start;
+  -webkit-user-select: none;
+  position: relative;
+  width: 100%;
+  z-index: 0;
+  overflow: hidden;
+  text-align: right;
+  bottom: auto;
+
+  background-color: lightcoral;
+  border-radius: 5px;
+  /* The duration is also specified in MediaControlElements.cpp and LayoutTests/media/media-controls.js */
+  transition: opacity 0.3s;
+}
+
+img {
+  max-width: 90%;
+}

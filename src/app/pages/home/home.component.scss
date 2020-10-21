@@ -1,56 +1,66 @@
-mat-list {
-  flex-grow: 1;
+.landing-image {
+  background-image: url("../../../assets/bg/work-office.jpg");
+  height: 100%;
   overflow: auto;
-  height: calc(100vh - 357px);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 
-.list-class .mat-list-item {
-  height: auto;
+@media screen and (max-width: 1024px) {
+  .landing-image {
+    background-image: url("../../../assets/bg/work-office-sm.jpg");
+  }
 }
 
-.overlayed {
+.main-content {
+  z-index: 2;
+  margin: 5vh;
+}
+
+.header {
   padding: 15px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  width: fit-content;
 }
 
-.is-active {
-  background-color: lightcoral !important;
-  font-size: medium !important;
-  font-weight: bold !important;
-}
-
-.example-container {
-  position: absolute;
-  top: 60px;
-  bottom: 10px;
-  left: 0;
-  right: 0;
-}
-
-///////////////////////////////////////////////////////////////////////
-
-audio {
-  width: 100%;
-  height: 100px;
-}
-
-audio::-webkit-media-controls-panel {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  /* We use flex-start here to ensure that the play button is visible even
-   * if we are too small to show all controls.
-   */
-  justify-content: flex-start;
-  -webkit-user-select: none;
+.main-intro {
+  left: -600px;
   position: relative;
-  width: 100%;
-  z-index: 0;
-  overflow: hidden;
-  text-align: right;
-  bottom: auto;
+  animation-name: intro-1;
+  animation-duration: 1s;
+  animation-delay: 1.5s;
+  animation-fill-mode: forwards;
+}
 
-  background-color: lightcoral;
-  border-radius: 5px;
-  /* The duration is also specified in MediaControlElements.cpp and LayoutTests/media/media-controls.js */
-  transition: opacity 0.3s;
+.sec-intro {
+  left: -600px;
+  position: relative;
+  animation-name: intro-2;
+  animation-duration: 1s;
+  animation-delay: 2.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes intro-1 {
+  from {
+    opacity: 0.1;
+    left: -100px;
+  }
+  to {
+    opacity: 1;
+    left: 0px;
+  }
+}
+
+@keyframes intro-2 {
+  from {
+    opacity: 0.1;
+    left: -100px;
+  }
+  to {
+    opacity: 1;
+    left: 0px;
+  }
 }

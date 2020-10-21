@@ -5,7 +5,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class HomeService {
+export class DailyService {
 
   constructor(private _httpService: HttpClient) { }
 

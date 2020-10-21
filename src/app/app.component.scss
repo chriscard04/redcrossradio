@@ -27,7 +27,7 @@
   width: 100%;
   position: fixed;
   top: 0;
-  background: #fff;
+  background: WhiteSmoke;
   z-index: 999999;
   visibility: visible;
   opacity: 1;
@@ -48,64 +48,85 @@
     -webkit-animation: loading-text-opacity 2s linear 0s infinite normal;
     animation: loading-text-opacity 2s linear 0s infinite normal;
   }
+  mat-progress-bar {
+    width: 50%;
+  }
+  img {
+    width: 200px;
+    animation-name: grow-img;
+    animation-duration: 2s;
+  }
+}
+
+@keyframes grow-img {
+  0% {
+    opacity: 0.5;
+    transform: scale(0, 0);
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.75, 1.75);
+  }
 }
 
 @keyframes loading-text-opacity {
   0% {
-    opacity: 0
+    opacity: 0;
   }
   20% {
-    opacity: 0
+    opacity: 0;
   }
   50% {
-    opacity: 1
+    opacity: 1;
   }
   100% {
-    opacity: 0
+    opacity: 0;
   }
 }
 
 @-moz-keyframes loading-text-opacity {
   0% {
-    opacity: 0
+    opacity: 0;
   }
   20% {
-    opacity: 0
+    opacity: 0;
   }
   50% {
-    opacity: 1
+    opacity: 1;
   }
   100% {
-    opacity: 0
+    opacity: 0;
   }
 }
 
 @-webkit-keyframes loading-text-opacity {
   0% {
-    opacity: 0
+    opacity: 0;
   }
   20% {
-    opacity: 0
+    opacity: 0;
   }
   50% {
-    opacity: 1
+    opacity: 1;
   }
   100% {
-    opacity: 0
+    opacity: 0;
   }
 }
 
 @-o-keyframes loading-text-opacity {
   0% {
-    opacity: 0
+    opacity: 0;
   }
   20% {
-    opacity: 0
+    opacity: 0;
   }
   50% {
-    opacity: 1
+    opacity: 1;
   }
   100% {
-    opacity: 0
+    opacity: 0;
   }
 }
