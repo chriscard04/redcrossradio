@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Angular Material Components
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -38,6 +39,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     MatCheckboxModule,
     MatCheckboxModule,
@@ -74,6 +77,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
   ],
   exports: [
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,

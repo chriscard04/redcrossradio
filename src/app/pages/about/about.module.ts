@@ -1,11 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+
 import { SharedModule } from '../../../shared/shared.module';
 import { AboutComponent } from './about.component';
 import { MisionComponent } from './mision/mision.component';
 import { VisionComponent } from './vision/vision.component';
+import { ContactService } from './contact.service';
 
 export const routes = [
   {
@@ -29,9 +30,11 @@ export const routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    FormsModule,
     SharedModule,
   ],
   declarations: [AboutComponent],
+  providers: [
+    ContactService
+  ]
 })
 export class AboutModule { }
