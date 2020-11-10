@@ -16,6 +16,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { GtagModule } from 'angular-gtag';
+import { TuneInComponent } from './pages/tune-in/tune-in.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { GtagModule } from 'angular-gtag';
     PagesComponent,
     ErrorComponent,
     NotFoundComponent,
+    TuneInComponent
 
 
   ],
