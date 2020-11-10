@@ -49,7 +49,32 @@
 
     </mat-sidenav>
     <mat-sidenav-content fxFlexFill>
-      <router-outlet></router-outlet>
+
+
+      <div class="icon-intro">
+        <button #tooltip="matTooltip" mat-fab color="warning" aria-label="Reporta Sintonía" (click)="drawer.toggle()"
+          matTooltip="Reporta Sintonía" [matTooltipPosition]="'left'" matRipple matBadge="!"
+          matBadgePosition="above before" matBadgeColor="primary">
+          <mat-icon color="primary">settings_voice</mat-icon>
+        </button>
+
+      </div>
+
+
+
+      <mat-drawer-container class="example-container w-100 p-8 pt-0 mt--8" [hasBackdrop]="true"
+        style="height: 100%; width: 100%;">
+        <mat-drawer #drawer class="example-sidenav pr-8" mode="over" position="end">
+          <div>
+            <h1>Componente de Reporte de sintonia</h1>
+          </div>
+        </mat-drawer>
+
+        <router-outlet></router-outlet>
+
+      </mat-drawer-container>
+
+
     </mat-sidenav-content>
   </mat-sidenav-container>
 </div>

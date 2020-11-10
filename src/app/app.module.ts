@@ -22,11 +22,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ErrorComponent,
     NotFoundComponent,
 
+
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     SharedModule,
+
     AppRoutingModule,
     BrowserAnimationsModule,
 
@@ -34,7 +36,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   providers: [
     AppSettings,
-
   ],
   bootstrap: [AppComponent]
 })

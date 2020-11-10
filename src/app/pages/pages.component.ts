@@ -13,6 +13,7 @@ import { AppSettings } from '../app.settings';
 })
 export class PagesComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
+  @ViewChild('tooltip') tooltip: any;
   public settings: Settings;
   public menus = ['vertical', 'horizontal'];
   public menuOption: string;
@@ -48,6 +49,8 @@ export class PagesComponent implements OnInit {
     this.menuTypeOption = this.settings.menuType;
     this.defaultMenu = this.settings.menu;
 
+
+
     /*     const clientObservable = this._service.getClientName();
         clientObservable.subscribe((data: any) => {
           this.ClientName = data.ClientName;
@@ -71,6 +74,7 @@ export class PagesComponent implements OnInit {
         }
       }
     });
+
     // if (this.settings.menu === 'vertical') this._menuService.expandActiveSubMenu(this._menuService.getMenuItems());
   }
 
