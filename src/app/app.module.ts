@@ -13,7 +13,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AppSettings } from './app.settings';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { GtagModule } from 'angular-gtag';
 
 @NgModule({
   declarations: [
@@ -26,13 +28,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     SharedModule,
 
     AppRoutingModule,
     BrowserAnimationsModule,
 
-    routing
+    routing,
+    GtagModule.forRoot({ trackingId: 'G-RDQ3S8JS21', trackPageviews: true })
   ],
   providers: [
     AppSettings,

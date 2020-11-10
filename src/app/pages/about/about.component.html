@@ -1,12 +1,103 @@
-<h1>About Radio</h1>
-<div class="w3-row">
+<div class="overlayed">
+  <div fxLayout="column">
+    <div class="flex-p">
+      <form [formGroup]="formData">
+        <div fxLayout="column" class="mat-elevation-z8" style="padding: 15px;">
+          <h1>Reporte de sintonía</h1>
 
-  <iframe src="//www.zeno.fm/player/radio-cruz-roja" width="100%" height="300" frameborder="0" scrolling="yes">
-  </iframe>
-  <br><br>
-  <a href="https://www.zeno.fm/player/radio-cruz-roja" target="_blank"
-    style="display: block; font-size: 0.9em; line-height: 10px;;">¿Hubo un error? Abrir Radio Cruz Roja en otra
-    ventana</a>
-  <br>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="start"
+            fxLayoutAlign.xs="start start" style="margin: 10px;">
 
+            <div fxFlex="60" fxFlex.xs="100" fxLayout="column">
+              <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="start"
+                fxLayoutAlign.xs="start start" style="margin: 10px;">
+                <mat-form-field appearance="fill" fxFlex.xs="100" fxFlex.md="100" fxFlex.lg="50" fxFlex.xl="50">
+                  <mat-label>Nombre</mat-label>
+                  <input matInput>
+                  <mat-icon matSuffix>account_circle</mat-icon>
+                </mat-form-field>
+
+
+                <mat-form-field appearance="fill" fxFlex.lt-md="100" fxFlex.md="100" fxFlex.lg="50" fxFlex.xl="50">
+                  <mat-label>Email</mat-label>
+                  <input matInput placeholder="radio@amcross.org" formControlName="email" required>
+                  <mat-icon matSuffix>email</mat-icon>
+                  <mat-error *ngIf="formData.controls.email.invalid">Parece que el correo no es válido</mat-error>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill" fxFlex.lt-md="100" fxFlex.md="100" fxFlex.lg="50" fxFlex.xl="50">
+                  <mat-label>Nacionalidad</mat-label>
+                  <input type="text" matInput placeholder="País de origen" formControlName="nationality" required
+                    [matAutocomplete]="autoGroup">
+                  <mat-icon matSuffix>flag</mat-icon>
+                  <mat-autocomplete #autoGroup="matAutocomplete">
+                    <mat-optgroup *ngFor="let region of regionGroupOptions | async" [label]="region.name">
+                      <mat-option *ngFor="let country of region.countries" [value]="country">
+                        {{country}}
+                      </mat-option>
+                    </mat-optgroup>
+                  </mat-autocomplete>
+                </mat-form-field>
+              </div>
+
+              <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="start"
+                fxLayoutAlign.xs="start start" style="margin: 10px;">
+                <mat-form-field appearance="fill" fxFlex.lt-md="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100">
+                  <mat-label>Mensaje</mat-label>
+                  <!-- <mat-icon matSuffix>chat</mat-icon> -->
+                  <textarea matInput placeholder="Comentario, recomendación, saludos y más" rows="2"></textarea>
+                </mat-form-field>
+              </div>
+            </div>
+
+
+            <div fxFlex="40" fxFlex.xs="100" fxLayout="column">
+
+              <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+                <h2>Graba un mensaje personalizado</h2>
+              </div>
+
+              <div fxLayout="row" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="center center"
+                fxLayoutAlign.xs="center center" style="margin: 10px;">
+
+                <button mat-fab color="primary" aria-label="grabar" matTooltip="Iniciar Grabacion"
+                  [disabled]="recording" (click)="startRecording()">
+                  <mat-icon>keyboard_voice</mat-icon>
+                </button>
+                <button mat-fab color="primary" aria-label="detener" matTooltip="Detener Grabacion"
+                  [disabled]="!recording" (click)="stopRecording()">
+                  <mat-icon>stop</mat-icon>
+                </button>
+
+              </div>
+              <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center" fxLayoutAlign.xs="center center">
+                <mat-progress-bar mode="buffer" style="width: 75%; margin: 15px; height: 5px;" *ngIf="recording">
+                </mat-progress-bar>
+              </div>
+
+
+
+              <!--  <button (click)="startRecording()">Start Recording</button>
+              <button (click)="stopRecording()">Stop Recording</button> -->
+
+              <div fxLayout="row" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="center center">
+                <audio id="player" controls autoplay style="width: 90%;">
+                  <source #myaudio type="audio/webm">
+                </audio>
+              </div>
+            </div>
+
+          </div>
+          <div fxLayout="row" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="center center"
+            fxLayoutAlign.xs="center center" style="margin: 10px;">
+            <button mat-raised-button color="primary" (click)="sendThis()">
+              <mat-icon style="margin-right: 10px;">send</mat-icon>Enviar
+            </button>
+
+          </div>
+
+        </div>
+      </form>
+    </div>
+  </div>
 </div>

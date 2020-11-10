@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 //Angular Material Components
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -39,6 +40,8 @@ import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     FlexLayoutModule,
     MatCheckboxModule,
     MatCheckboxModule,
@@ -76,6 +79,8 @@ import { MatBadgeModule } from '@angular/material/badge';
   ],
   exports: [
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatCheckboxModule,
     MatCheckboxModule,
     MatButtonModule,
