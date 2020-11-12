@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
-import { DailyComponent } from './daily.component';
+import { EpisodesComponent } from './episodes.component';
 
 export const routes = [
   {
     path: '',
-    component: DailyComponent,
+    component: EpisodesComponent,
     data: { breadcrumb: '' },
   },
 ];
@@ -20,6 +20,6 @@ export const routes = [
     FormsModule,
     SharedModule,
   ],
-  declarations: [DailyComponent],
+  declarations: [EpisodesComponent],
 })
-export class DailyModule { }
+export class EpisodesModule { }

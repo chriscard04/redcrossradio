@@ -34,6 +34,15 @@
   animation-fill-mode: forwards;
 }
 
+.main-intro-nodelay {
+  left: -600px;
+  position: relative;
+  animation-name: intro-1;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-fill-mode: forwards;
+}
+
 .sec-intro {
   left: -600px;
   position: relative;

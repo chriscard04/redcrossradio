@@ -46,26 +46,26 @@ export const routes: Routes = [
     ],
   },
   {
-    path: 'daily',
-    data: { breadcrumb: 'Daily' },
+    path: 'schedule',
+    data: { breadcrumb: 'Schedule' },
     component: PagesComponent,
     // canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/pages/daily/daily.module').then(m => m.DailyModule)
+        loadChildren: () => import('src/app/pages/schedule/schedule.module').then(m => m.ScheduleModule)
       },
     ],
   },
   {
-    path: 'programs',
-    data: { breadcrumb: 'Programs' },
+    path: 'episodes',
+    data: { breadcrumb: 'Episodes' },
     component: PagesComponent,
     // canActivate: [AuthGuard],
     children: [
       {
         path: '',
-        loadChildren: () => import('src/app/pages/programs/programs.module').then(m => m.ProgramsModule)
+        loadChildren: () => import('src/app/pages/episodes/episodes.module').then(m => m.EpisodesModule)
       },
     ],
   },

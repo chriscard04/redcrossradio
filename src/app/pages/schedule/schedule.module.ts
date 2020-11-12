@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
-import { ProgramsComponent } from './programs.component';
+import { ScheduleComponent } from './schedule.component';
 
 export const routes = [
   {
     path: '',
-    component: ProgramsComponent,
+    component: ScheduleComponent,
     data: { breadcrumb: '' },
   },
 ];
@@ -20,6 +20,6 @@ export const routes = [
     FormsModule,
     SharedModule,
   ],
-  declarations: [ProgramsComponent],
+  declarations: [ScheduleComponent],
 })
-export class ProgramsModule { }
+export class ScheduleModule { }

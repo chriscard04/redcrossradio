@@ -1,11 +1,11 @@
 <div class="landing-image">
   <div class="main-content">
     <div class="header">
-      <h1 class="main-intro" style="font-size: xx-large;">Tu Radio, Tu Espacio</h1>
+      <h1 [ngClass]="{'main-intro' : !loader}" [ngClass]="{'main-intro-nodelay' : loader}" style="font-size: xx-large;">Tu Radio, Tu Espacio</h1>
 
       <br>
 
-      <p class="main-intro" style="font-size: large;">
+      <p [ngClass]="{'main-intro' : !loader}" [ngClass]="{'main-intro-nodelay' : loader}" style="font-size: large;">
         ¿Nos has sintonizado recientemente?
       </p>
       <p class="sec-intro" style="font-size: large;">

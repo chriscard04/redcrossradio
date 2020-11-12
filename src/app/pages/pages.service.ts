@@ -7,6 +7,7 @@ import { MatDrawer } from '@angular/material/sidenav';
 export class PagesService {
 
   private drawer: MatDrawer;
+  private loader: boolean = false;
 
   setDrawer(drawer: MatDrawer) {
     this.drawer = drawer;
@@ -17,6 +18,15 @@ export class PagesService {
       this.drawer.toggle();
     }
   }
+
+  getLoader(): boolean {
+    return this.loader;
+  }
+
+  setLoader(): void {
+    this.loader = true;
+  }
+
 }
 
 

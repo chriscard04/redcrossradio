@@ -1,29 +1,32 @@
 import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild } from '@angular/core';
-import { DailyService } from './daily.service'
+import { ScheduleService } from './schedule.service'
 import * as momenttz from 'moment-timezone';
 import * as moment from 'moment';
 
 
 @Component({
-  selector: 'app-daily',
-  templateUrl: './daily.component.html',
-  styleUrls: ['./daily.component.scss']
+  selector: 'app-schedule',
+  templateUrl: './schedule.component.html',
+  styleUrls: ['./schedule.component.scss']
 })
-export class DailyComponent implements AfterViewInit {
+export class ScheduleComponent implements AfterViewInit {
   @ViewChild("scheduleItem") itemProp: QueryList<ElementRef>;
+  loading: boolean = false;
 
   tempData;
   dataSchedule: scheduleModel[] = new Array();
   now: Date = new Date();
   selectedIndex;
   schedule;
-  hour;
+  horalocal: String;
+  zonalocal: String;
 
-  constructor(private _dailyService: DailyService, public elRef: ElementRef) {
+  constructor(private _scheduleService: ScheduleService, public elRef: ElementRef) {
   }
 
   ngOnInit() {
-    this._dailyService.getSchedule().subscribe(
+    this.loading = true;
+    this._scheduleService.getSchedule().subscribe(
       data => {
         data['feed']['entry'].forEach(item => {
           let newschedule = new scheduleModel();
@@ -36,8 +39,10 @@ export class DailyComponent implements AfterViewInit {
 
           this.dataSchedule.push(newschedule);
         });
-
+        this.loading = false;
         this.tempData = this.dataSchedule
+
+
 
         this.selectedIndex = this.findCurrentHour(this.dataSchedule);
 
@@ -45,6 +50,8 @@ export class DailyComponent implements AfterViewInit {
           item.hour = moment(item.hour).format("HH:mm");
         });
 
+        // Analizar el ordenamiento
+        // this.tempData.sort((a, b) => (a.hour > b.hour) ? 1 : -1);
         this.schedule = this.tempData;
 
         setTimeout(() => {
@@ -56,11 +63,13 @@ export class DailyComponent implements AfterViewInit {
       }
     );
 
-    this.hour = moment(this.now).format("HH:mm");
+    this.horalocal = moment(this.now).format("HH:mm a").toString() + " (" + moment.tz.zone(moment.tz.guess()).abbr(360) + ")";
+    this.zonalocal = moment.tz.guess();
   }
 
   ngAfterViewInit() {
-
+    console.log(moment.tz.guess())
+    console.log(moment.tz.zone(moment.tz.guess()).abbr(360))
   }
 
   toItem(className: string) {

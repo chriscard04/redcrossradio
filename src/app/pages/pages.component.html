@@ -10,8 +10,8 @@
       <div fxShow="true" fxHide.lt-md>
         <!-- The following menu items will be hidden on both SM and XS screen sizes -->
         <a [routerLink]="'/home'" mat-button>Inicio</a>
-        <a [routerLink]="'/daily'" mat-button>A Diario</a>
-        <a [routerLink]="'/programs'" mat-button>Episodios</a>
+        <a [routerLink]="'/schedule'" mat-button>Programación</a>
+        <a [routerLink]="'/episodes'" mat-button>Episodios</a>
         <a [routerLink]="'/downloads'" mat-button>Descargas</a>
 
         <a mat-button [matMenuTriggerFor]="acercaDeMenu">Acerca de</a>
@@ -35,8 +35,8 @@
     <mat-sidenav #sidenav>
       <mat-nav-list>
         <a [routerLink]="'/home'" mat-list-item>Inicio</a>
-        <a [routerLink]="'/daily'" mat-list-item>A Diario</a>
-        <a [routerLink]="'/programs'" mat-list-item>Episodios</a>
+        <a [routerLink]="'/schedule'" mat-list-item>Programación</a>
+        <a [routerLink]="'/episodes'" mat-list-item>Episodios</a>
         <a [routerLink]="'/downloads'" mat-list-item>Descargas</a>
 
         <a mat-list-item [matMenuTriggerFor]="acercaDeMenu">Acerca de</a>
