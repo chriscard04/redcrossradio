@@ -1,11 +1,15 @@
-import { AfterViewInit, ChangeDetectorRef, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
-import * as RecordRTC from 'recordrtc';
+import * as RecordRTC from 'recordrtc'; // Ref. https://recordrtc.org/
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { ContactService } from './contact.service';
+import { PagesService } from '../pages.service'
+import { environment } from '../../../environments/environment.prod'
+
 
 export const _filter = (opt: string[], value: string): string[] => {
   const filterValue = value.toLowerCase();
@@ -19,44 +23,35 @@ export const _filter = (opt: string[], value: string): string[] => {
   styleUrls: ['./tune-in.component.scss']
 })
 export class TuneInComponent implements AfterViewInit, OnInit {
-  player;
-  fileinput;
-  formData: FormGroup;
-  form: FormData;
-
-
-  mediaRecorder: any;
-  mystream: any;
-  isSafari: any;
-  isEdge: any;
-
-
-  regions: any;
-  regionGroupOptions: Observable<any[]>;
-
-  recording: boolean = false;
-
-
-
+  mediaRecorder: any; mystream: any; isSafari: any; isEdge: any;
+  recording: boolean = false; player: any; fileinput: any;
+  regions: any; regionGroupOptions: Observable<any[]>; userCountry: any;
+  formGroup: FormGroup; formData: FormData = new FormData();
+  formDataText = new FormData(); formDataFile = new FormData();
 
   constructor(
-    private _router: Router,
     private builder: FormBuilder,
-    private contact: ContactService) {
+    private http: HttpClient,
+    private contact: ContactService,
+    private _snackBar: MatSnackBar,
+    private _drawer: PagesService) {
   }
 
   ngOnInit() {
-    this.form = new FormData();
-    this.formData = this.builder.group({
+
+    this._drawer.toggle();
+
+    this.formGroup = this.builder.group({
       name: new FormControl('', [Validators.required]),
-      email: new FormControl('', [Validators.compose([Validators.required, Validators.email])]),
-      nationality: new FormControl('', [Validators.required]),
-      comment: new FormControl('')
+      message: new FormControl(''),
+      nationality: new FormControl(''),
+      email: new FormControl('', [Validators.email]),
+      location: new FormControl(''),
     });
 
     this.regions = this.contact.getCountries();
 
-    this.regionGroupOptions = this.formData.get('nationality')!.valueChanges
+    this.regionGroupOptions = this.formGroup.get('nationality')!.valueChanges
       .pipe(
         startWith(''),
         map(value => this._filterGroup(value))
@@ -66,9 +61,8 @@ export class TuneInComponent implements AfterViewInit, OnInit {
     this.contact.getUserCountry().subscribe((res) => {
       let country: any
       country = res;
-      console.log(country.country);
-      console.log(country.region);
-      console.log(country.city);
+      this.userCountry = country.country;
+      this.formGroup.get('location').setValue(country.city + ', ' + country.region + ', ' + country.country);
     });
 
     this.isEdge = navigator.userAgent.indexOf('Edge') !== -1 && (!!navigator.msSaveOrOpenBlob || !!navigator.msSaveBlob);
@@ -96,29 +90,89 @@ export class TuneInComponent implements AfterViewInit, OnInit {
     //    this.myaudio.nativeElement.src = "/assets/test.mp3";
 
   }
-  onSubmit(FormData) {
+  onSubmit() {
 
-    this.contact.postMessage(FormData)
-      .subscribe(response => {
-        // location.href = 'https://mailthis.to/confirm'
-        this._router.navigate(['/about/mision']);
-      }, error => {
-        console.warn(error.responseText)
-        console.log({ error })
-      })
+    var reqHeader = new HttpHeaders({
+      'Authorization': environment.apiJWT
+    });
+
+
+    const queryText =
+      `mutation {
+          create_item (
+            board_id: 840830330,
+            group_id: "topics",
+            item_name: "`+ this.formGroup.get('name').value + " desde " + this.userCountry + `",
+            column_values: "{`+
+      `\\"` + `texto\\":\\"` + this.formGroup.get('name').value + `\\"` +
+      `,\\"` + `texto3\\":\\"` + this.formGroup.get('email').value + `\\"` +
+      `,\\"` + `mensaje\\":\\"` + this.formGroup.get('message').value + `\\"` +
+      `,\\"` + `texto8\\":\\"` + this.formGroup.get('nationality').value + `\\"` +
+      `,\\"` + `texto9\\":\\"` + this.formGroup.get('location').value + `\\"` +
+      `}") { id} }`;
+
+    this.formDataText.append("query", queryText);
+
+    this.http.post('https://api.monday.com/v2', this.formDataText, { headers: reqHeader }).subscribe(
+      (resText: any) => {
+        if (this.formData.get("file") != null) {
+
+          const queryFile =
+            `mutation ($file:File!) {
+  add_file_to_column(
+    file: $file,
+    item_id: `+ resText.data.create_item.id + `,
+    column_id: archivo)
+    { id } }`;
+
+          this.formDataFile.append("query", queryFile);
+          this.formDataFile.append("variables[file]", this.formData.get("file"));
+
+
+          this.http.post('https://api.monday.com/v2/file', this.formDataFile, { headers: reqHeader }).subscribe(
+            (resFile: any) => {
+              this._drawer.toggle();
+              this.snackMessage("¡Tu mensaje ha sido Enviado!");
+            },
+            (error) => console.log(error)
+            , () => {
+              this.cleanForm();
+            }
+          )
+        } else {
+          this.cleanForm();
+          this._drawer.toggle();
+          this.snackMessage("¡Tu mensaje ha sido Enviado!")
+        }
+
+      },
+      (error) => console.log(error)
+    )
   }
 
 
-  sendThis() {
-    this.form.append("_replyto", "chriscard11@gmail.com");
-    this.form.append("name", "chriscard11");
-    this.onSubmit(this.form);
+  snackMessage(message) {
+    this._snackBar.open(message, '', {
+      duration: 3000,
+    });
+  }
 
-    this.mystream.getTracks().forEach((track) => { track.stop() });
+  cleanForm() {
+    this.formGroup.get('name').setValue('');
+    this.formGroup.get('email').setValue('');
+    this.formGroup.get('message').setValue('');
+    this.formGroup.get('nationality').setValue('');
+    this.formData.delete("file");
+    this.formDataFile.delete("query");
+    this.formDataFile.delete("variables[file]");
+    this.formDataText.delete("query");
+    this.formDataText.delete("variables[file]");
+    this.player.src = null;
   }
 
   startRecording() {
     this.recording = true;
+    this.player.src = null;
     navigator.mediaDevices.getUserMedia({
       audio: true
     }).then(async (stream) => {
@@ -143,7 +197,6 @@ export class TuneInComponent implements AfterViewInit, OnInit {
     });
   }
 
-
   stopRecording() {
     this.recording = false;
     this.mediaRecorder.stopRecording(function () { });
@@ -156,14 +209,15 @@ export class TuneInComponent implements AfterViewInit, OnInit {
         this.player.src = null;
         this.player.src = filereader.result.toString();
 
-        if (this.form.get("file")) {
-          this.form.delete("file");
-          this.form.append("file", this.mediaRecorder.getBlob(), "Myregards11.mp3");
+        if (this.formData.get("file")) {
+          this.formData.delete("file");
+          this.formData.append("file", this.mediaRecorder.getBlob(), this.formGroup.get('name').value + "_" + this.userCountry + "_saludos.mp3");
         } else {
-          this.form.append("file", this.mediaRecorder.getBlob(), "Myregards11.mp3");
+          this.formData.append("file", this.mediaRecorder.getBlob(), this.formGroup.get('name').value + "_" + this.userCountry + "_saludos.mp3");
         }
 
         this.mediaRecorder.reset();
+        this.mystream.stop();
       }, false)
 
       if (file) {
@@ -171,16 +225,36 @@ export class TuneInComponent implements AfterViewInit, OnInit {
       }
     }, 1000);
 
+  }
+
+}
 
 
-    /*       console.log(file);
+////////////////////////////////// This is an alternative way to send the information.
+///////////////////////////////// More information in https://mailthis.to
 
-          this.player.load(); */
+/*     this.contact.postMessage(FormData)
+      .subscribe(response => {
+        // location.href = 'https://mailthis.to/confirm'
+        this._router.navigate(['/about/mision']);
+      }, error => {
+        console.warn(error.responseText)
+        console.log({ error })
+      }); */
+
+/*   sendThis() {
+    this.formData.append("_replyto", "chriscard11@gmail.com");
+    this.formData.append("name", "chriscard11");
+    this.onSubmit(this.formData);
+
+    this.mystream.getTracks().forEach((track) => { track.stop() });
+  } */
+
+
+/*       console.log(file);
+
+      this.player.load(); */
     //this.player.src = "/assets/test.mp3";
     //this.myaudio.nativeElement.src = URL.createObjectURL(recorder.getBlob())
     //this.playAudio(URL.createObjectURL(recorder.getBlob()));
 
-
-  }
-
-}

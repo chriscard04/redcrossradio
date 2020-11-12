@@ -3,6 +3,8 @@ import { NavigationEnd, Router } from '@angular/router';
 // import { MenuService } from '../theme/components/menu/menu.service';
 import { Settings } from '../app.settings.model';
 import { AppSettings } from '../app.settings';
+import { PagesService } from './pages.service'
+import { MatDrawer } from '@angular/material/sidenav';
 // import { AppService } from 'app/core/services/app.services';
 
 @Component({
@@ -13,6 +15,7 @@ import { AppSettings } from '../app.settings';
 })
 export class PagesComponent implements OnInit {
   @ViewChild('sidenav') sidenav: any;
+  @ViewChild('drawer') public drawer: MatDrawer;
   @ViewChild('tooltip') tooltip: any;
   public settings: Settings;
   public menus = ['vertical', 'horizontal'];
@@ -32,7 +35,7 @@ export class PagesComponent implements OnInit {
   constructor(
     private _appSettings: AppSettings,
     private _router: Router,
-
+    private _drawer: PagesService
     // private _menuService: MenuService,
     // private _service: AppService
   ) {
@@ -40,6 +43,8 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit() {
+
+
     if (window.innerWidth <= 768) {
       this.settings.menu = 'vertical';
       this.settings.sidenavIsOpened = false;
@@ -60,6 +65,8 @@ export class PagesComponent implements OnInit {
   }
 
   ngAfterViewInit() {
+    this._drawer.setDrawer(this.drawer);
+
     setTimeout(() => {
       this.settings.loadingSpinner = false;
     }, 1500);

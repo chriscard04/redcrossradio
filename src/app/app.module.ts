@@ -15,7 +15,8 @@ import { AppSettings } from './app.settings';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-import { GtagModule } from 'angular-gtag';
+import { GtagModule } from 'angular-gtag'
+
 import { TuneInComponent } from './pages/tune-in/tune-in.component';
 
 @NgModule({

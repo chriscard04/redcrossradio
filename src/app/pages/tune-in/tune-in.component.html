@@ -1,4 +1,4 @@
-<form [formGroup]="formData">
+<form [formGroup]="formGroup">
   <div fxLayout="column" style="padding: 15px;">
     <h1>Reporte de sintonía</h1>
 
@@ -6,22 +6,23 @@
       <div class="flex-item-33">
         <mat-form-field appearance="fill">
           <mat-label>Nombre</mat-label>
-          <input matInput>
+          <input matInput formControlName="name" required>
           <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-error *ngIf="formGroup.controls.name.invalid">Tu nombre es importante para nosotros</mat-error>
         </mat-form-field>
       </div>
       <div class="flex-item-33">
         <mat-form-field appearance="fill">
           <mat-label>Email</mat-label>
-          <input matInput placeholder="radio@amcross.org" formControlName="email" required>
+          <input matInput placeholder="radio@amcross.org" formControlName="email">
           <mat-icon matSuffix>email</mat-icon>
-          <mat-error *ngIf="formData.controls.email.invalid">Parece que el correo no es válido</mat-error>
+          <mat-error *ngIf="formGroup.controls.email.invalid">Parece que el correo no es válido</mat-error>
         </mat-form-field>
       </div>
       <div class="flex-item-33">
         <mat-form-field appearance="fill">
           <mat-label>Nacionalidad</mat-label>
-          <input type="text" matInput placeholder="País de origen" formControlName="nationality" required
+          <input type="text" matInput placeholder="País de origen" formControlName="nationality"
             [matAutocomplete]="autoGroup">
           <mat-icon matSuffix>flag</mat-icon>
           <mat-autocomplete #autoGroup="matAutocomplete">
@@ -37,16 +38,17 @@
         <mat-form-field appearance="fill" fxFlex.lt-md="100" fxFlex.md="100" fxFlex.lg="100" fxFlex.xl="100">
           <mat-label>Mensaje</mat-label>
           <!-- <mat-icon matSuffix>chat</mat-icon> -->
-          <textarea matInput placeholder="Comentario, recomendación, saludos y más" rows="2"></textarea>
+          <textarea matInput formControlName="message" placeholder="Comentario, recomendación, saludos y más"
+            rows="2"></textarea>
         </mat-form-field>
       </div>
     </div>
 
-    <h3>Graba un mensaje personalizado</h3>
+    <h3>Graba un mensaje de voz</h3>
     <div class="flex-container">
       <div class="flex-item-50">
         <button style="margin-right: 10px;" mat-fab color="primary" aria-label="grabar" matTooltip="Iniciar Grabacion"
-          [disabled]="recording" (click)="startRecording()">
+          [disabled]="recording || formGroup.controls.name.invalid" (click)="startRecording()">
           <mat-icon>keyboard_voice</mat-icon>
         </button>
         <button mat-fab color="primary" aria-label="detener" matTooltip="Detener Grabacion" [disabled]="!recording"
@@ -64,7 +66,9 @@
         </mat-progress-bar>
       </div>
       <div class="flex-item-100" style="margin-top: 5px">
-        <button mat-raised-button color="primary" (click)="sendThis()">
+        <button mat-raised-button color="primary" (click)="onSubmit()"
+          [disabled]="recording || formGroup.controls.name.invalid">
+          <!-- <button mat-raised-button color="primary" (click)="sendThis()"> -->
           <mat-icon style="margin-right: 10px;">send</mat-icon>Enviar
         </button>
       </div>
