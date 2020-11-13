@@ -1,1 +1,32 @@
-<h1>Acerca de</h1>
+<div class="overlayed">
+  <div fxLayout="column">
+    <div class="flex-p">
+      <div fxLayout="column" class="mat-elevation-z8" style="padding: 15px;">
+
+        <h1>Acerca de Tu Radio</h1>
+        <p style="font-size: medium;">
+
+        </p>
+        <h2 class="center">
+          Pronto conocerás acerca de nuestras metas, contenido, aspiraciones y más...
+        </h2>
+        <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="center center"
+          fxLayoutAlign.xs="start start" style="margin: 10px;">
+          <div class="center" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" fxFlex.lt-sm="100">
+            <button class="hvr-pop hvr-icon-back" mat-raised-button color="primary" [routerLink]="'/schedule'">
+              <!-- <button mat-raised-button color="primary" (click)="sendThis()"> -->
+              <mat-icon style="margin-right: 10px;" class="hvr-icon">event_available</mat-icon>Ver Programación
+            </button>
+          </div>
+          <div class="center" fxFlex.md="50" fxFlex.lg="50" fxFlex.xl="50" fxFlex.lt-sm="100">
+            <button class="hvr-pop hvr-icon-back" mat-raised-button color="primary" [routerLink]="'/downloads'">
+              <!-- <button mat-raised-button color="primary" (click)="sendThis()"> -->
+              <mat-icon style="margin-right: 10px;" class="hvr-icon">smartphone</mat-icon>Descarga la App
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,7 +5,7 @@ import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../../shared/shared.module';
 import { AboutComponent } from './about.component';
 import { MisionComponent } from './mision/mision.component';
-import { VisionComponent } from './vision/vision.component';
+import { VolunteersComponent } from './volunteers/volunteers.component';
 import { ContactService } from './contact.service';
 
 export const routes = [
@@ -20,8 +20,8 @@ export const routes = [
     data: { breadcrumb: '' },
   },
   {
-    path: 'vision',
-    component: VisionComponent,
+    path: 'volunteers',
+    component: VolunteersComponent,
     data: { breadcrumb: '' },
   },
 ];
@@ -32,7 +32,7 @@ export const routes = [
     RouterModule.forChild(routes),
     SharedModule,
   ],
-  declarations: [AboutComponent],
+  declarations: [AboutComponent, VolunteersComponent],
   providers: [
     ContactService
   ]

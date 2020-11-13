@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, OnInit, QueryList, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, ViewChild } from '@angular/core';
 import { ScheduleService } from './schedule.service'
 import * as momenttz from 'moment-timezone';
 import * as moment from 'moment';
@@ -9,7 +9,7 @@ import * as moment from 'moment';
   templateUrl: './schedule.component.html',
   styleUrls: ['./schedule.component.scss']
 })
-export class ScheduleComponent implements OnInit, AfterViewInit {
+export class ScheduleComponent implements OnInit, OnDestroy {
 
 
   loading: boolean = false;
@@ -17,6 +17,8 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
   now: Date = new Date();
   selectedIndex; schedule;
   horalocal: String; zonalocal: String;
+  updateTimeInterval: any;
+
 
   constructor(private _scheduleService: ScheduleService, public elRef: ElementRef) {
   }
@@ -54,7 +56,7 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     this.now = new Date();
     this.horalocal = moment(this.now).format("HH:mm a").toString() + " (GMT" + moment.tz(this.now, moment.tz.guess()).format("Z") + ")";
 
-    setInterval(() => {
+    this.updateTimeInterval = setInterval(() => {
       this.now = new Date();
       this.horalocal = moment(this.now).format("HH:mm a").toString() + " (GMT" + moment.tz(this.now, moment.tz.guess()).format("Z") + ")";
 
@@ -69,8 +71,8 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
     }, 10000);
   }
 
-  ngAfterViewInit() {
-
+  ngOnDestroy() {
+    clearInterval(this.updateTimeInterval);
   }
 
   updateTime() {
@@ -93,10 +95,6 @@ export class ScheduleComponent implements OnInit, AfterViewInit {
       this.toItem('is-active');
     }, 1000);
   }
-
-
-
-
 
   toItem(className: string) {
     const elementList = document.querySelectorAll('.' + className);
