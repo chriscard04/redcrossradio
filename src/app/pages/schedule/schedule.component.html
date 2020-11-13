@@ -13,6 +13,9 @@
           </div>
         </div>
 
+        <mat-progress-bar mode="buffer" style="width: 100%; margin: 15px; height: 5px;" *ngIf="loading">
+        </mat-progress-bar>
+
         <div class="flex-lst-container">
           <div class="flex-lst-item-10">
             <p style="font-weight: bold; font-size: medium;">
@@ -30,12 +33,9 @@
             </p>
           </div>
         </div>
-
-        <mat-progress-bar mode="buffer" style="width: 100%; margin: 15px; height: 5px;" *ngIf="loading">
-        </mat-progress-bar>
         <mat-list class="list-class">
-          <mat-list-item #scheduleItem *ngFor="let item of schedule; let i = index" [class.is-active]="i==selectedIndex"
-            [id]="'item-'+i">
+          <mat-list-item class="hvr-hang" *ngFor="let item of schedule; let i = index"
+            [class.is-active]="i==selectedIndex" [id]="'item-'+i">
 
             <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="start center"
               fxLayoutAlign.xs="start start" style="margin: 10px;">
@@ -55,6 +55,7 @@
             <mat-divider [inset]="true"></mat-divider>
           </mat-list-item>
         </mat-list>
+
 
       </div>
     </div>

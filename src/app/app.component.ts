@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Settings } from './app.settings.model';
 import { AppSettings } from './app.settings';
 import { Router, NavigationEnd } from '@angular/router';
 import { Gtag } from 'angular-gtag';
+import { PagesService } from './pages/pages.service';
 
 declare let gtag: Function;
 
@@ -12,11 +13,14 @@ declare let gtag: Function;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   title = 'radio-app';
   public settings: Settings;
 
-  constructor(private _appSettings: AppSettings, public router: Router) {
+  constructor(private _appSettings: AppSettings, public router: Router, public _pages: PagesService) {
     this.settings = this._appSettings.settings;
+  }
+  ngAfterViewInit() {
+
   }
 }

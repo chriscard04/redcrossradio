@@ -1,14 +1,15 @@
 <div class="landing-image">
   <div class="main-content">
-    <div class="header">
-      <h1 [ngClass]="{'main-intro' : !loader}" [ngClass]="{'main-intro-nodelay' : loader}" style="font-size: xx-large;">Tu Radio, Tu Espacio</h1>
+    <div class="header hvr-grow-shadow">
+      <h1 [ngClass]="{'main-intro' : loader, 'main-intro-nodelay' : !loader}" style="font-size: xx-large;">Tu Radio, Tu
+        Espacio</h1>
 
       <br>
 
-      <p [ngClass]="{'main-intro' : !loader}" [ngClass]="{'main-intro-nodelay' : loader}" style="font-size: large;">
+      <p [ngClass]="{'main-intro' : loader, 'main-intro-nodelay' : !loader}" style="font-size: large;">
         ¿Nos has sintonizado recientemente?
       </p>
-      <p class="sec-intro" style="font-size: large;">
+      <p [ngClass]="{'sec-intro' : loader, 'sec-intro-nodelay' : !loader}" style="font-size: large;">
         <b>
           ~ !Nos estamos renovando!
         </b>
@@ -18,8 +19,8 @@
       <hr>
       <br>
 
-      <p class="sec-intro center" style="color: crimson !important; font-weight: bold; font-size: x-large;">
-        ¡Sintonízanos!
+      <p [ngClass]="{'sec-intro' : loader, 'sec-intro-nodelay' : !loader}" class="center" style="color: crimson !important; font-weight: bold; font-size: x-large;">
+        ¡Reporta Sintonía!
       </p>
     </div>
 

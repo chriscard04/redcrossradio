@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit, ViewChild } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 // import { MenuService } from '../theme/components/menu/menu.service';
 import { Settings } from '../app.settings.model';
@@ -13,7 +13,7 @@ import { MatDrawer } from '@angular/material/sidenav';
   styleUrls: ['./pages.component.scss'],
   //  providers: [MenuService],
 })
-export class PagesComponent implements OnInit {
+export class PagesComponent implements OnInit, AfterViewInit {
   @ViewChild('sidenav') sidenav: any;
   @ViewChild('drawer') public drawer: MatDrawer;
   @ViewChild('tooltip') tooltip: any;
@@ -31,11 +31,12 @@ export class PagesComponent implements OnInit {
   public ClientName: string;
   public UserName: string;
   public radio: any;
+  loader: boolean;
 
   constructor(
     private _appSettings: AppSettings,
     private _router: Router,
-    private _drawer: PagesService
+    private _pages: PagesService
     // private _menuService: MenuService,
     // private _service: AppService
   ) {
@@ -43,7 +44,7 @@ export class PagesComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.loader = this._pages.getLoader();
 
     if (window.innerWidth <= 768) {
       this.settings.menu = 'vertical';
@@ -65,7 +66,8 @@ export class PagesComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this._drawer.setDrawer(this.drawer);
+    this._pages.setLoader();
+    this._pages.setDrawer(this.drawer);
 
     setTimeout(() => {
       this.settings.loadingSpinner = false;

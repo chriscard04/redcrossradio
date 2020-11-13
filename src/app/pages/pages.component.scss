@@ -28,11 +28,26 @@ img {
 }
 
 .icon-intro {
-  right: -600px;
+  right: -100px;
   position: relative;
   animation-name: intro-icon1;
   animation-duration: 1s;
   animation-delay: 2.5s;
+  animation-fill-mode: backwards;
+
+  z-index: 5;
+  position: fixed;
+  display: flex;
+  align-self: flex-end;
+  bottom: 65px;
+  right: 20px;
+}
+.icon-intro-nodelay {
+  right: -100px;
+  position: relative;
+  animation-name: intro-icon1;
+  animation-duration: 1s;
+  animation-delay: 1.5s;
   animation-fill-mode: backwards;
 
   z-index: 5;

@@ -24,6 +24,7 @@
     "@angular/router": "~9.1.6",
     "angular-gtag": "^1.0.4",
     "bootstrap": "^4.5.3",
+    "hover.css": "^2.3.2",
     "moment": "^2.29.1",
     "moment-timezone": "^0.5.31",
     "recordrtc": "^5.6.1",

@@ -4,27 +4,27 @@
 
     <div class="flex-container">
       <div class="flex-item-33">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="hvr-icon-rotate">
           <mat-label>Nombre</mat-label>
           <input matInput formControlName="name" required>
-          <mat-icon matSuffix>account_circle</mat-icon>
+          <mat-icon matSuffix class="hvr-icon">account_circle</mat-icon>
           <mat-error *ngIf="formGroup.controls.name.invalid">Tu nombre es importante para nosotros</mat-error>
         </mat-form-field>
       </div>
       <div class="flex-item-33">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="hvr-icon-rotate">
           <mat-label>Email</mat-label>
           <input matInput placeholder="radio@amcross.org" formControlName="email">
-          <mat-icon matSuffix>email</mat-icon>
+          <mat-icon matSuffix class="hvr-icon">email</mat-icon>
           <mat-error *ngIf="formGroup.controls.email.invalid">Parece que el correo no es válido</mat-error>
         </mat-form-field>
       </div>
       <div class="flex-item-33">
-        <mat-form-field appearance="fill">
+        <mat-form-field appearance="fill" class="hvr-icon-rotate">
           <mat-label>Nacionalidad</mat-label>
           <input type="text" matInput placeholder="País de origen" formControlName="nationality"
             [matAutocomplete]="autoGroup">
-          <mat-icon matSuffix>flag</mat-icon>
+          <mat-icon matSuffix class="hvr-icon">flag</mat-icon>
           <mat-autocomplete #autoGroup="matAutocomplete">
             <mat-optgroup *ngFor="let region of regionGroupOptions | async" [label]="region.name">
               <mat-option *ngFor="let country of region.countries" [value]="country">
@@ -47,12 +47,13 @@
     <h3>Graba un mensaje de voz</h3>
     <div class="flex-container">
       <div class="flex-item-50">
-        <button style="margin-right: 10px;" mat-fab color="primary" aria-label="grabar" matTooltip="Iniciar Grabacion"
-          [disabled]="recording || formGroup.controls.name.invalid" (click)="startRecording()">
+        <button class="hvr-grow-shadow" style="margin-right: 10px;" mat-fab color="primary" aria-label="grabar"
+          matTooltip="Iniciar Grabacion" [disabled]="recording || formGroup.controls.name.invalid"
+          (click)="startRecording()">
           <mat-icon>keyboard_voice</mat-icon>
         </button>
-        <button mat-fab color="primary" aria-label="detener" matTooltip="Detener Grabacion" [disabled]="!recording"
-          (click)="stopRecording()">
+        <button class="hvr-grow-shadow" mat-fab color="primary" aria-label="detener" matTooltip="Detener Grabacion"
+          [disabled]="!recording" (click)="stopRecording()">
           <mat-icon>stop</mat-icon>
         </button>
       </div>
@@ -66,10 +67,10 @@
         </mat-progress-bar>
       </div>
       <div class="flex-item-100" style="margin-top: 5px">
-        <button mat-raised-button color="primary" (click)="onSubmit()"
+        <button class="hvr-grow-shadow hvr-icon-pulse-grow" mat-raised-button color="primary" (click)="onSubmit()"
           [disabled]="recording || formGroup.controls.name.invalid">
           <!-- <button mat-raised-button color="primary" (click)="sendThis()"> -->
-          <mat-icon style="margin-right: 10px;">send</mat-icon>Enviar
+          <mat-icon style="margin-right: 10px;" class="hvr-icon">send</mat-icon>Enviar
         </button>
       </div>
     </div>
