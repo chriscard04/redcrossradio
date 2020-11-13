@@ -93,6 +93,7 @@ export class TuneInComponent implements AfterViewInit, OnInit {
   onSubmit() {
 
     var reqHeader = new HttpHeaders({
+      'Access-Control-Allow-Origin': 'http://localhost:4200',
       'Authorization': environment.apiJWT
     });
 

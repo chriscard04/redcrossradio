@@ -19,6 +19,18 @@ export class AppComponent implements AfterViewInit {
 
   constructor(private _appSettings: AppSettings, public router: Router, public _pages: PagesService) {
     this.settings = this._appSettings.settings;
+
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        gtag('config', 'G-3310F7ZJRS',
+          {
+            'page_path': event.urlAfterRedirects
+          }
+        );
+      }
+    }
+    );
+
   }
   ngAfterViewInit() {
 
