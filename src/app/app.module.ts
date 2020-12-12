@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { GtagModule } from 'angular-gtag'
 
 import { TuneInComponent } from './pages/tune-in/tune-in.component';
+import { TitleService } from './app-title.service';
 
 @NgModule({
   declarations: [
@@ -38,12 +39,13 @@ import { TuneInComponent } from './pages/tune-in/tune-in.component';
 
     AppRoutingModule,
     BrowserAnimationsModule,
-
     routing,
-    GtagModule.forRoot({ trackingId: 'G-RDQ3S8JS21', trackPageviews: true })
+    GtagModule.forRoot({ trackingId: 'G-3310F7ZJRS', trackPageviews: false })
+    
   ],
   providers: [
     AppSettings,
+    TitleService,
   ],
   bootstrap: [AppComponent]
 })

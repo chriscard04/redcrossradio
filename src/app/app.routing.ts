@@ -6,12 +6,13 @@ import { ErrorComponent } from '../app/pages/others/errors/error/error.component
 import { NotFoundComponent } from '../app/pages/others/errors/not-found/not-found.component';
 // import { AuthGuard } from './core/guards/auth.guard';
 import { BlankComponent } from '../app/pages/others/blank/blank.component';
+import { VolunteersComponent } from './pages/about/volunteers/volunteers.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   {
     path: 'blank',
-    data: { breadcrumb: '' },
+    data: { title: 'Em Blanco' },
     component: PagesComponent,
     // canActivate: [AuthGuard],
     children: [
@@ -23,19 +24,34 @@ export const routes: Routes = [
   },
   {
     path: 'about',
-    data: { breadcrumb: 'About' },
+    data: { title: 'Acerca de' },
     component: PagesComponent,
     // canActivate: [AuthGuard],
     children: [
       {
         path: '',
+        data: {},
         loadChildren: () => import('src/app/pages/about/about.module').then(m => m.AboutModule)
       },
     ],
   },
   {
+    path: 'about/volunteers',
+    data: { title: 'Voluntarios' },
+    component: PagesComponent,
+    // canActivate: [AuthGuard],
+    children: [
+      {
+        path: '',
+        data: {},
+        loadChildren: () => import('src/app/pages/about/volunteers/volunteers.module').then(m => m.VolunteersModule)
+      },
+    ],
+  },
+  
+  {
     path: 'home',
-    data: { breadcrumb: 'Home' },
+    data: { title: 'Inicio' },
     component: PagesComponent,
     // canActivate: [AuthGuard],
     children: [
@@ -47,7 +63,7 @@ export const routes: Routes = [
   },
   {
     path: 'schedule',
-    data: { breadcrumb: 'Schedule' },
+    data: { title: 'Programación' },
     component: PagesComponent,
     // canActivate: [AuthGuard],
     children: [
@@ -59,7 +75,7 @@ export const routes: Routes = [
   },
   {
     path: 'episodes',
-    data: { breadcrumb: 'Episodes' },
+    data: { title: 'Episodios' },
     component: PagesComponent,
     // canActivate: [AuthGuard],
     children: [
@@ -71,7 +87,7 @@ export const routes: Routes = [
   },
   {
     path: 'downloads',
-    data: { breadcrumb: 'Downloads' },
+    data: { title: 'Descargas' },
     component: PagesComponent,
     // canActivate: [AuthGuard],
     children: [
@@ -81,8 +97,8 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: 'error', component: ErrorComponent, data: { breadcrumb: 'Error' } },
-  { path: '**', component: NotFoundComponent },
+  { path: 'error', component: ErrorComponent, data: { title: 'Error' } },
+  { path: '**', component: NotFoundComponent,  data: { title: 'Página no encontrada' } },
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(routes, {

@@ -4,26 +4,14 @@ import { RouterModule } from '@angular/router';
 
 import { SharedModule } from '../../../shared/shared.module';
 import { AboutComponent } from './about.component';
-import { MisionComponent } from './mision/mision.component';
-import { VolunteersComponent } from './volunteers/volunteers.component';
 import { ContactService } from './contact.service';
 
 export const routes = [
   {
     path: '',
+    data: { title: 'Acerca de | Cruz Roja Radio'  },
     component: AboutComponent,
-    data: { breadcrumb: '' },
-  },
-  {
-    path: 'mision',
-    component: MisionComponent,
-    data: { breadcrumb: '' },
-  },
-  {
-    path: 'volunteers',
-    component: VolunteersComponent,
-    data: { breadcrumb: '' },
-  },
+  }
 ];
 
 @NgModule({
@@ -32,7 +20,7 @@ export const routes = [
     RouterModule.forChild(routes),
     SharedModule,
   ],
-  declarations: [AboutComponent, VolunteersComponent],
+  declarations: [AboutComponent],
   providers: [
     ContactService
   ]
