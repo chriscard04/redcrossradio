@@ -9,7 +9,6 @@ export const routes = [
   {
     path: '',
     component: DownloadsComponent,
-    data: { breadcrumb: '' },
   },
 ];
 

@@ -9,7 +9,7 @@ export const routes = [
   {
     path: '',
     component: EpisodesComponent,
-    data: { breadcrumb: '' },
+    data: {},
   },
 ];
 

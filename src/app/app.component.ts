@@ -1,9 +1,10 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Settings } from './app.settings.model';
 import { AppSettings } from './app.settings';
 import { Router, NavigationEnd } from '@angular/router';
 import { Gtag } from 'angular-gtag';
 import { PagesService } from './pages/pages.service';
+import { TitleService } from './app-title.service';
 
 declare let gtag: Function;
 
@@ -13,14 +14,14 @@ declare let gtag: Function;
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements AfterViewInit {
+export class AppComponent implements OnInit {
   title = 'radio-app';
   public settings: Settings;
 
-  constructor(private _appSettings: AppSettings, public router: Router, public _pages: PagesService) {
+  constructor(private _appSettings: AppSettings, public router: Router, public _pages: PagesService, private titleService: TitleService) {
     this.settings = this._appSettings.settings;
 
-    this.router.events.subscribe(event => {
+/*     this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         gtag('config', 'G-3310F7ZJRS',
           {
@@ -29,10 +30,11 @@ export class AppComponent implements AfterViewInit {
         );
       }
     }
-    );
+    ); */
 
   }
-  ngAfterViewInit() {
 
+  ngOnInit() {
+    this.titleService.boot();
   }
 }
