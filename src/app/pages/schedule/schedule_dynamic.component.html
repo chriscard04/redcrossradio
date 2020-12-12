@@ -1,0 +1,63 @@
+<div class="overlayed">
+  <div fxLayout="column">
+    <div class="flex-p">
+      <div fxLayout="column" class="mat-elevation-z8" style="padding: 15px;">
+        <div class="flex-container">
+          <div class="flex-left">
+            <h1>Programación Regular</h1>
+          </div>
+          <div class="flex-right">
+            <p style="font-size: smaller; font-style: italic; margin-bottom: 0px;">Ajustada su zona horaria:
+              <b>{{zonalocal}}</b></p>
+            <p style="font-size: smaller; font-style: italic; margin-top: 0px;">Hora actual: <b>{{horalocal}}</b></p>
+          </div>
+        </div>
+
+
+        <div class="flex-lst-container">
+          <div class="flex-lst-item-10">
+            <p style="font-weight: bold; font-size: medium;">
+              Hora
+            </p>
+          </div>
+          <div class="flex-lst-item-45">
+            <p style="font-weight: bold; font-size: medium; font-style: italic;">
+              Programa
+            </p>
+          </div>
+          <div class="flex-lst-item-45">
+            <p style="font-weight: bold; font-size: medium;">
+              Tema
+            </p>
+          </div>
+        </div>
+        <mat-progress-bar mode="buffer" style="width: 100%; margin: 15px; height: 5px;" *ngIf="loading">
+        </mat-progress-bar>
+        <mat-list class="list-class">
+          <mat-list-item class="hvr-hang" *ngFor="let item of schedule; let i = index"
+            [class.is-active]="i==selectedIndex" [id]="'item-'+i">
+
+            <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="start center"
+              fxLayoutAlign.xs="start start" style="margin: 10px;">
+              <div fxFlex.md="10" fxFlex.lg="10" fxFlex.lt-sm="100">
+                <span fxLayoutAlign="start center">
+                  <mat-icon matListIcon>schedule</mat-icon>
+                  {{item.hour}}
+                </span>
+              </div>
+              <div fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxFlex.lt-sm="100" style="font-style: italic;">
+                {{item.program}}
+              </div>
+              <div fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxFlex.lt-sm="100">
+                {{item.title}}
+              </div>
+            </div>
+            <mat-divider [inset]="true"></mat-divider>
+          </mat-list-item>
+        </mat-list>
+
+
+      </div>
+    </div>
+  </div>
+</div>

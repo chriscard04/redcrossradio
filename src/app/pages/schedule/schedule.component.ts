@@ -2,6 +2,7 @@ import { AfterViewInit, Component, ElementRef, OnDestroy, OnInit, QueryList, Vie
 import { ScheduleService } from './schedule.service'
 import * as momenttz from 'moment-timezone';
 import * as moment from 'moment';
+import { FormControl } from '@angular/forms';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
   horalocal: String; zonalocal: String;
   updateTimeInterval: any;
 
+  tabs = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+  selected = new FormControl(0);
 
   constructor(private _scheduleService: ScheduleService, public elRef: ElementRef) {
   }
