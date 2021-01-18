@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { SharedModule } from '../../../shared/shared.module';
 import { ScheduleComponent } from './schedule.component';
 
+
 export const routes = [
   {
     path: '',

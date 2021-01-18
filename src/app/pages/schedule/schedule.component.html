@@ -1,9 +1,12 @@
 <div class="overlayed">
   <div fxLayout="column">
     <div class="flex-p">
-      <mat-tab-group mat-align-tabs="center" [selectedIndex]="selected.value"
-        (selectedIndexChange)="selected.setValue($event)">
+      <mat-progress-bar mode="buffer" style="width: 100%; margin: 15px; height: 5px;" *ngIf="loading">
+      </mat-progress-bar>
+      <mat-tab-group #matTabGroup mat-align-tabs="center" [selectedIndex]="selectedTab.value"
+        (selectedIndexChange)="selectedTab.setValue($event)">
         <mat-tab *ngFor="let tab of tabs; let index = index" [label]="tab">
+
           <div fxLayout="column" class="mat-elevation-z8" style="padding: 15px;">
             <div class="flex-container">
               <div class="flex-left">
@@ -35,11 +38,10 @@
                 </p>
               </div>
             </div>
-            <mat-progress-bar mode="buffer" style="width: 100%; margin: 15px; height: 5px;" *ngIf="loading">
-            </mat-progress-bar>
+
             <mat-list class="list-class">
-              <mat-list-item class="hvr-hang" *ngFor="let item of schedule; let i = index"
-                [class.is-active]="i==selectedIndex" [id]="'item-'+i">
+              <mat-list-item class="hvr-hang" *ngFor="let item of schedule[tab]; let i = index"
+                [class.is-active]="i==selectedItemIndex" [id]="'item-'+i">
 
                 <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="10px" fxFlex="100" fxLayoutAlign="start center"
                   fxLayoutAlign.xs="start start" style="margin: 10px;">
@@ -62,7 +64,6 @@
 
 
           </div>
-
 
         </mat-tab>
       </mat-tab-group>
