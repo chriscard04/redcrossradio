@@ -48,7 +48,7 @@
     <div class="flex-container">
       <div class="flex-item-50">
         <button class="hvr-grow-shadow" style="margin-right: 10px;" mat-fab color="primary" aria-label="grabar"
-          matTooltip="Iniciar Grabacion" [disabled]="recording || formGroup.controls.name.invalid || true"
+          matTooltip="Iniciar Grabacion" [disabled]="recording || formGroup.controls.name.invalid"
           (click)="startRecording()">
           <mat-icon>keyboard_voice</mat-icon>
         </button>
