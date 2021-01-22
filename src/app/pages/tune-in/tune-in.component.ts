@@ -174,8 +174,6 @@ export class TuneInComponent implements AfterViewInit, OnInit {
                 )
                 .subscribe(
                   (resFile: any) => {
-                    this._drawer.toggle();
-                    this.snackMessage('¡Tu grabación ha sido Enviada!');
                   },
                   (error) => console.log(error),
                   () => {
