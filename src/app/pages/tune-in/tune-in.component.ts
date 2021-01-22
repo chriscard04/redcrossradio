@@ -162,15 +162,18 @@ export class TuneInComponent implements AfterViewInit, OnInit {
                 field.name
               );
               this.formDataFile.append('data', JSON.stringify(data));
-              
-              setTimeout( () => { /*Your Code*/ }, 700 );
-              console.log(this.formData)
+
+              setTimeout(() => {
+                /*Your Code*/
+              }, 700);
 
               this.http
-                .post('https://app-radio-audios.herokuapp.com/audio-files', this.formDataFile)
+                .post(
+                  'https://app-radio-audios.herokuapp.com/audio-files',
+                  this.formDataFile
+                )
                 .subscribe(
                   (resFile: any) => {
-                    console.log('File Sending');
                     this._drawer.toggle();
                     this.snackMessage('¡Tu grabación ha sido Enviada!');
                   },
@@ -181,7 +184,6 @@ export class TuneInComponent implements AfterViewInit, OnInit {
                 );
             }
           });
-
 
           /*     if (this.formData.get("file") !== null) {
 

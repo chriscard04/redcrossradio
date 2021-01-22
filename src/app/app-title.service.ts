@@ -27,7 +27,6 @@ export class TitleService {
       map((data) => {
 
         //here goes the GA reporting code            
-console.log(data)
         this.gtag.pageview({
           page_title: data && data.title ? data.title : this.default_title,
           page_path: this.router.url,
