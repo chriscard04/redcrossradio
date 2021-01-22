@@ -167,7 +167,7 @@ export class TuneInComponent implements AfterViewInit, OnInit {
               console.log(this.formData)
 
               this.http
-                .post('http://localhost:1337/audio-files', this.formDataFile)
+                .post('https://app-radio-audios.herokuapp.com/audio-files', this.formDataFile)
                 .subscribe(
                   (resFile: any) => {
                     console.log('File Sending');
@@ -286,7 +286,7 @@ export class TuneInComponent implements AfterViewInit, OnInit {
               this.formGroup.get('name').value +
                 '_' +
                 this.userCountry +
-                '_saludos.wav'
+                '_saludos.mp3'
             );
           } else {
             this.formData.append(
@@ -295,7 +295,7 @@ export class TuneInComponent implements AfterViewInit, OnInit {
               this.formGroup.get('name').value +
                 '_' +
                 this.userCountry +
-                '_saludos.wav'
+                '_saludos.mp3'
             );
           }
 
