@@ -97,6 +97,23 @@ export const routes: Routes = [
       },
     ],
   },
+// Redirects
+{
+  path: 'programacion', redirectTo: 'schedule', pathMatch: 'full'
+},
+{
+  path: 'descargas', redirectTo: 'downloads', pathMatch: 'full'
+},
+{
+  path: 'episodios', redirectTo: 'episodes', pathMatch: 'full'
+},
+{
+  path: 'inicio', redirectTo: 'home', pathMatch: 'full'
+},
+{
+  path: 'acerca', redirectTo: 'about', pathMatch: 'full'
+},
+//Additionals
   { path: 'error', component: ErrorComponent, data: { title: 'Error' } },
   { path: '**', component: NotFoundComponent,  data: { title: 'Página no encontrada' } },
 ];
