@@ -67,6 +67,8 @@ export class ScheduleComponent implements OnInit, OnDestroy {
           newschedule.program = item.gsx$program.$t;
           newschedule.title = item.gsx$title.$t;
           newschedule.hour = temp.format();
+          newschedule.length = item.gsx$length$t;
+          newschedule.badge = item.gsx$badge.$t;
 
           // Group by tab - day
           if (_currentDay == null) {
@@ -118,6 +120,7 @@ export class ScheduleComponent implements OnInit, OnDestroy {
         currentItem = this.selectedItemIndex;
       } else {
         let newItem = this.findCurrentHour(this.tempData[this.currentDay]);
+        //console.log("new:", newItem, "curr:",currentItem)
         if (newItem !== currentItem) {
           // IF there's a different hour to go, then
           // Scroll to item afer 1 second
@@ -143,15 +146,16 @@ export class ScheduleComponent implements OnInit, OnDestroy {
 
   updateTime() {
     // Format the hour to show in column
-    this.tabs.forEach((tab) => {
-      this.tempData[tab].forEach((item) => {
-        item.hour = moment(item.hour).format('HH:mm');
-      });
-    });
 
     // Order list by hour
     this.tabs.forEach((tab) => {
       this.tempData[tab].sort((a, b) => (a.hour > b.hour ? 1 : -1));
+    });
+
+    this.tabs.forEach((tab) => {
+      this.tempData[tab].forEach((item) => {
+        item.hour = moment(item.hour).format('hh:mm a');
+      });
     });
 
     // Identify the current hour
@@ -210,10 +214,14 @@ export class scheduleModel {
   hour: string;
   program: string;
   title: string;
+  badge: string;
+  length: string;
 
   constructor() {
     this.hour = '';
     this.program = '';
     this.title = '';
+    this.length = '';
+    this.badge = '';
   }
 }

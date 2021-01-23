@@ -1,3 +1,46 @@
+.badge-length > .mat-badge-content {
+  margin-top: 11px;
+  margin-left: 4px;
+  padding-left: 3px;
+  padding-right: 3px;
+  width: auto;
+  border-radius: 0px;
+  right: unset !important;
+  background-color: #eeeeeecc;
+  color: black;
+  font-size: 13px !important;
+}
+
+.is-active .badge-length > .mat-badge-content {
+  background-color: #ff99a181;
+}
+
+.badge-live > .mat-badge-content {
+  margin-top: -9px;
+  margin-left: -5px;
+  padding-left: 3px;
+  padding-right: 3px;
+  width: auto;
+  border-radius: 9px;
+  //right: unset !important;
+  background-color: #f03d4d; // background-color: white;
+  color: white; // color: #f03d4d;
+  font-size: 11px !important;
+}
+
+.badge-icon > .mat-badge-content {
+  margin-top: -9px;
+  margin-left: 9px;
+  padding-left: 3px;
+  padding-right: 3px;
+  width: auto;
+  border-radius: 9px;
+  //right: unset !important;
+  background-color: white;
+  color: #f03d4d;
+  font-size: 13px !important;
+}
+
 mat-list {
   flex-grow: 1;
   overflow: auto;
@@ -13,9 +56,10 @@ mat-list {
 }
 
 .is-active {
-  background-color: lightcoral !important;
+  background-color: #ff99a181 !important;
   font-size: medium !important;
   font-weight: bold !important;
+  
 }
 
 .example-container {

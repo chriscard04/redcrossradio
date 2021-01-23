@@ -55,7 +55,10 @@
                     {{item.program}}
                   </div>
                   <div fxFlex.md="45" fxFlex.lg="45" fxFlex.xl="45" fxFlex.lt-sm="100">
-                    {{item.title}}
+                    <span [class]="item.badge.length <= 2 ? 'badge-icon' : 'badge-live'" [matBadge]="item.badge" matBadgeOverlap="false"
+                      matBadgePosition="before" [matBadgeHidden]="item.badge ? false : true">{{item.title}}</span>
+                    <span class="badge-length" [matBadge]="item.length" matBadgeOverlap="false" matBadgePosition="after">
+                    </span>
                   </div>
                 </div>
                 <mat-divider [inset]="true"></mat-divider>
