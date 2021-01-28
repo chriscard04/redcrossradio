@@ -1,3 +1,9 @@
+.menu-items{ 
+ color: white !important;
+
+ 
+}
+
 .radio-icon {
   padding: 0 14px;
 }
@@ -35,11 +41,11 @@ img {
   animation-delay: 2.5s;
   animation-fill-mode: backwards;
 
-  z-index: 5;
+  z-index: 99;
   position: fixed;
   display: flex;
   align-self: flex-end;
-  bottom: 65px;
+  bottom: 140px;
   right: 20px;
 }
 .icon-intro-nodelay {
@@ -50,11 +56,11 @@ img {
   animation-delay: 1.5s;
   animation-fill-mode: backwards;
 
-  z-index: 5;
+  z-index: 99;
   position: fixed;
   display: flex;
   align-self: flex-end;
-  bottom: 65px;
+  bottom: 140px;
   right: 20px;
 }
 

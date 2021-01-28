@@ -37,11 +37,11 @@
   position: fixed;
   display: inline-block;
   align-self: flex-end;
-  bottom: 150px;
-  right: 20px;
+  bottom: 140px;
+  right: 85px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 25px;
-  width: 300px;
+  width: 200px;
   height: 75px;
 }
 
@@ -57,11 +57,11 @@
   position: fixed;
   display: inline-block;
   align-self: flex-end;
-  bottom: 150px;
-  right: 20px;
+  bottom: 140px;
+  right: 85px;
   background-color: rgba(255, 255, 255, 0.9);
   border-radius: 25px;
-  width: 300px;
+  width: 200px;
   height: 75px;
 }
 
@@ -129,6 +129,6 @@
   }
   to {
     opacity: 1;
-    right: 20px;
+    right: 85px;
   }
 }

@@ -58,8 +58,7 @@
         </button>
       </div>
       <div class="flex-item-50">
-        <audio id="player" controls autoplay style="width: 100%;">
-          <source #myaudio type="audio/webm">
+        <audio id="player" controls autoplay style="width: 100%;" [hidden]="recording">
         </audio>
       </div>
       <div class="flex-item-100">
